@@ -1,0 +1,45 @@
+server:
+  port: "8080"
+  environment: "development"
+  read_timeout: 15s
+  write_timeout: 15s
+
+security:
+  jwt_secret: "super-secret-key-change-me"
+  token_expiration: 1h
+
+redis:
+  address: "localhost:6379"
+  password: ""
+  db: 0
+
+cors:
+  allow_origins:
+    - "*"
+
+services:
+  transaction-service:
+    name: "transaction-service"
+    url: "http://localhost:8081"
+    timeout: 10s
+    circuit_breaker: true
+
+  user-service:
+    name: "user-service"
+    url: "http://localhost:8082"
+    timeout: 5s
+
+  auth-service:
+    name: "auth-service"
+    url: "http://localhost:8083"
+    timeout: 5s
+
+  reporting-service:
+    name: "reporting-service"
+    url: "http://localhost:8084"
+    timeout: 30s
+
+  aml-service:
+    name: "aml-service"
+    url: "http://localhost:8085"
+    timeout: 10s
