@@ -9,8 +9,8 @@ security:
   token_expiration: 1h
 
 redis:
-  address: "localhost:6379"
-  password: ""
+  address: "${REDIS_ADDRESS:-redis:6379}"
+  password: "${REDIS_PASSWORD:-}"
   db: 0
 
 cors:
@@ -20,26 +20,51 @@ cors:
 services:
   transaction-service:
     name: "transaction-service"
-    url: "http://localhost:8081"
+    url: "http://transaction-service:8081"
     timeout: 10s
     circuit_breaker: true
 
   user-service:
     name: "user-service"
-    url: "http://localhost:8082"
+    url: "http://user-service:8082"
     timeout: 5s
 
   auth-service:
     name: "auth-service"
-    url: "http://localhost:8083"
+    url: "http://auth-service:3000"
     timeout: 5s
 
   reporting-service:
     name: "reporting-service"
-    url: "http://localhost:8084"
+    url: "http://reporting-service:8084"
     timeout: 30s
 
   aml-service:
     name: "aml-service"
-    url: "http://localhost:8085"
+    url: "http://aml-service:8085"
+    timeout: 10s
+
+  ledger-service:
+    name: "ledger-service"
+    url: "http://ledger-service:9090"
+    timeout: 15s
+
+  fraud-service:
+    name: "fraud-service"
+    url: "http://fraud-service:3004"
+    timeout: 10s
+
+  notification-service:
+    name: "notification-service"
+    url: "http://notification-service:3003"
+    timeout: 5s
+
+  websocket-gateway:
+    name: "websocket-gateway"
+    url: "http://websocket-gateway:3001"
+    timeout: 5s
+
+  audit-service:
+    name: "audit-service"
+    url: "http://audit-service:8086"
     timeout: 10s
